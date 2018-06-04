@@ -1,6 +1,5 @@
 /vendor/
 /logs/*
-!/logs/README.md
 cache/myOptions
 cache/userKey
-/.idea/
+.idea
