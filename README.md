@@ -37,6 +37,14 @@ will only try to render pastes that are 1:1 copies of an image!
 
 That's probably a security flaw?  Depends how much you can trust `htmlspecialchars`
 
+# Aliases
+
+`alias serveBin='curl -F upload=@- http://localhost:8080/'`
+
+`alias wasteBinPrivate='curl -F upload=@- -F private=1 http://localhost:8080/' `
+
+Obviously change things and include your secretMessage if you use that.
+
 # Security
 
 There isn't much.
