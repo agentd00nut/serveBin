@@ -147,7 +147,7 @@ $app->post('/', function (Request $request, Response $response, array $args) {
 	}
 
 	$files = $request->getUploadedFiles();
-	$id = uniqid("pasteImages/");
+	$id = uniqid("serveBin/");
 
 	if($files["upload"]->getSize() > 100000000){
 		$this->logger->info("|".join("|",
@@ -162,11 +162,15 @@ $app->post('/', function (Request $request, Response $response, array $args) {
 		exit;
 	}
 
-	if($_POST['private'] && is_numeric($_POST['private']) ){
-		$postID=$pb->makeBin($id, $files["upload"]->getStream()->__toString(), array("private"=>$_POST['private']) );
-	}else{
-		$postID=$pb->makeBin($id, $files["upload"]->getStream()->__toString() );
+	$options=array();
+
+	foreach(array("private","name","expire","format","key") as $x){
+		if(array_key_exists($x, $_POST)){
+			$options[$x] = $_POST[$x];
+		}
 	}
+
+	$postID=$pb->makeBin($id, $files["upload"]->getStream()->__toString(), $options );
 
 
 
