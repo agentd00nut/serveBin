@@ -1,0 +1,8 @@
+{
+    "apiKey":"",
+    "userName":"",
+    "userPassword":"",
+    "userKey":"",
+    "pastePrivate":0,
+    "secretMessage":"This Is a silly way to do security!"
+}
