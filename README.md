@@ -54,11 +54,12 @@ to write something more appropriate is free to open a pull request :)
 # Upgrades
 Many.
 
-Security.
-Handling all the options from the $_POST variable would be neat.
-Cleaning up the class.
-Cleaning up how requests to paste bin are handled.
-Add real error handling.
+- Security.
+- Handling all the options from the $_POST variable would be neat.
+- Cleaning up the class.
+- Cleaning up how requests to paste bin are handled.
+- Add real error handling.
+
 
 I will likely do none of those things so feel free!
 
