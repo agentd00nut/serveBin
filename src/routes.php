@@ -74,18 +74,23 @@ class PasteBin{
 		$api_paste_name			= urlencode($name); // name or title of your paste
 		$api_user_key 			= $this->userKey; // if an invalid or expired api_user_key is used, an error will spawn. If no api_user_key is used, a guest paste will be created
 
-		$args=array("api_paste_private"=>'api_paste_private='.$api_paste_private,"api_paste_name"=>"api_paste_name=".$api_paste_name);
+		$args=array(
+			"api_user_key"=> 'api_user_key='.$api_user_key,
+			"api_paste_private"=>'api_paste_private='.$api_paste_private,
+			"api_paste_name"=>"api_paste_name=".$api_paste_name
+		);
+
+		if($options["key"]){ $args['api_user_key'] = 'api_user_key='.$options["key"]; }
 		if($options["private"]){ $args['api_paste_private'] = "api_paste_private=".$options["private"]; }
 		if($options["name"]){ $args['api_paste_name'] = "api_paste_name=".$options["name"]; }
 		if($options["expire"]){ $args['api_paste_expire_date'] = "api_paste_expire_date=".$options["expire"]; }
 		if($options["format"]){ $args['api_paste_format'] = 'api_paste_format='.$options["php"]; }
-		if($options["key"]){ $args['api_user_key'] = 'api_user_key='.$options["key"]; }
 
 		$url 				= 'https://pastebin.com/api/api_post.php';
 		$ch 				= curl_init($url);
 
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, 'api_option=paste&api_user_key='.$api_user_key.'&api_dev_key='.$api_dev_key.'&api_paste_code='.$api_paste_code."&".join("&",$args));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'api_option=paste&api_dev_key='.$api_dev_key.'&api_paste_code='.$api_paste_code."&".join("&",$args));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_NOBODY, 0);
 
