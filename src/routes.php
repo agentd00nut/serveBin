@@ -79,15 +79,18 @@ class PasteBin{
 			"api_paste_private"=>'api_paste_private='.$api_paste_private,
 			"api_paste_name"=>"api_paste_name=".$api_paste_name
 		);
-
-		if($options["key"]){ $args['api_user_key'] = 'api_user_key='.$options["key"]; }
-		if($options["private"]){ $args['api_paste_private'] = "api_paste_private=".$options["private"]; }
-		if($options["name"]){ $args['api_paste_name'] = "api_paste_name=".$options["name"]; }
-		if($options["expire"]){ $args['api_paste_expire_date'] = "api_paste_expire_date=".$options["expire"]; }
-		if($options["format"]){ $args['api_paste_format'] = 'api_paste_format='.$options["php"]; }
+		if(array_key_exists("key", $options) && $options['key'] != ""){ $args['api_user_key'] = 'api_user_key='.$options["key"]; }
+		if(array_key_exists("key", $options) && $options['key'] == ""){ unset($args['api_user_key']); }
+		if(array_key_exists("private", $options)){ $args['api_paste_private'] = "api_paste_private=".$options["private"]; }
+		if(array_key_exists("name", $options)){ $args['api_paste_name'] = "api_paste_name=".$options["name"]; }
+		if(array_key_exists("expire", $options)){ $args['api_paste_expire_date'] = "api_paste_expire_date=".$options["expire"]; }
+		if(array_key_exists("format", $options)){ $args['api_paste_format'] = 'api_paste_format='.$options["php"]; }
 
 		$url 				= 'https://pastebin.com/api/api_post.php';
 		$ch 				= curl_init($url);
+
+		//
+		//print_r($args);die();
 
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'api_option=paste&api_dev_key='.$api_dev_key.'&api_paste_code='.$api_paste_code."&".join("&",$args));
