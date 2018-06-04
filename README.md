@@ -45,6 +45,11 @@ That's probably a security flaw?  Depends how much you can trust `htmlspecialcha
 
 Obviously change things and include your secretMessage if you use that.
 
+You can pass any of these keywords as a form to edit that part of the bin
+`"private","name","expire","format","key"`
+
+You can easily figure out how to use these from the pastebin Docs.
+
 # Security
 
 There isn't much.
